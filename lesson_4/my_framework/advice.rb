@@ -1,5 +1,3 @@
-# advice.rb
-
 class Advice
   def initialize
     @advice_list = [

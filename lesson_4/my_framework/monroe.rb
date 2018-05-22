@@ -1,5 +1,3 @@
-# monroe.rb
-
 class Monroe
   def erb(filename, local = {})
     b = binding

@@ -3,7 +3,7 @@ require 'socket'
 def parse_request(request_line)
   http_method, path_and_params, _http = request_line.split
   path, params = path_and_params.split('?')
-  params = params.split('&').each_with_object({}) do |param, hash|
+  params = (params || '').split('&').each_with_object({}) do |param, hash|
     key, value = param.split('=')
     hash[key] = value
   end
@@ -33,15 +33,14 @@ loop do
   client.puts params
   client.puts "</pre>"
 
-  client.puts "<h1>Rolls!</h1>"
+  client.puts "<h1>Counter</h1>"
 
-  rolls = params['rolls'].to_i
-  sides = params['sides'].to_i
+  number = params['number'].to_i
 
-  rolls.times do
-    client.puts '<p>', rand(sides) + 1, '</p>'
-  end
+  client.puts "<p>The current number is #{number}.</p>"
 
+  client.puts "<a href='?number=#{number + 1}'>Add one</a>"
+  client.puts "<a href='?number=#{number - 1}'>Subtract one</a>"
   client.puts "</body>"
   client.puts "</html>"
   client.close
