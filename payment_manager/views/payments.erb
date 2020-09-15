@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Created</th>
+      <th>Card Number</th>
+      <th>Expiration Date</th>
+    </tr>
+  </thead>
+  <% session[:payments].each do |info| %>
+  <tbody>
+    <tr>
+      <td><%= info['First Name'] %> <%= info['Last Name'] %></td>
+      <td><%= info['Time'] %></td>
+      <td><%= card_format(info['Card Number']) %></td>
+      <td><%= info['Expiration Date'] %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
+<ul>
+  <li><a href="/payments/create">Make another payment</a></li>
+  <li><a href="/">New Session</a></li>
+</ul>

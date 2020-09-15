@@ -1,0 +1,16 @@
+<html>
+  <title>Payment App</title>
+  <link href="/app.css" rel="stylesheet" type="text/css" />
+  <body>
+    <% if session[:message] %>
+      <p class="message"><%= session.delete(:message) %></p>
+    <% end %>
+    <% if session[:missing_fields] %>
+      <p class="message"><%= session.delete(:missing_fields) %></p>
+    <% end %>
+    <% if session[:invalid_card] %>
+      <p class="message"><%= session.delete(:invalid_card) %></p>
+    <% end %>
+    <%== yield %>
+  </body>
+</html>
